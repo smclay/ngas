@@ -35,26 +35,26 @@ from . import ngamsTestLib
 class ngamsMIMEMultipartTest(ngamsTestLib.ngamsTestSuite):
 
     mydirs = [
-        "toplevel",
-        "toplevel/1",
-        "toplevel/2",
-        "toplevel/3",
-        "toplevel/3/subdir",
-        "toplevel/3/subdir/anotherSubdir"
+        "/tmp/ngas/toplevel",
+        "/tmp/ngas/toplevel/1",
+        "/tmp/ngas/toplevel/2",
+        "/tmp/ngas/toplevel/3",
+        "/tmp/ngas/toplevel/3/subdir",
+        "/tmp/ngas/toplevel/3/subdir/anotherSubdir"
     ]
 
     myfiles = [
-        "toplevel/file1",
-        "toplevel/file2",
-        "toplevel/1/musicFile",
-        "toplevel/2/fitsFile.fits",
-        "toplevel/3/subdir/apple",
-        "toplevel/3/subdir/anotherSubdir/orange"
+        "/tmp/ngas/toplevel/file1",
+        "/tmp/ngas/toplevel/file2",
+        "/tmp/ngas/toplevel/1/musicFile",
+        "/tmp/ngas/toplevel/2/fitsFile.fits",
+        "/tmp/ngas/toplevel/3/subdir/apple",
+        "/tmp/ngas/toplevel/3/subdir/anotherSubdir/orange"
     ]
 
     def tearDown(self):
-        if os.path.isdir("toplevel"):
-            rmFile("toplevel")
+        if os.path.isdir("/tmp/ngas"):
+            rmFile("/tmp/ngas")
 
     def _createDirectories(self):
         for mydir in self.mydirs:
@@ -97,7 +97,7 @@ class ngamsMIMEMultipartTest(ngamsTestLib.ngamsTestSuite):
         if not onlyDirs:
             self._createFiles()
 
-        cinfo = ngamsMIMEMultipart.cinfo_from_filesystem('toplevel', 'application/octet-stream')
+        cinfo = ngamsMIMEMultipart.cinfo_from_filesystem('/tmp/ngas/toplevel', 'application/octet-stream')
         bs = 65536
         output = io.BytesIO()
         reader = ngamsMIMEMultipart.ContainerReader(cinfo)
